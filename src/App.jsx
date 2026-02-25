@@ -1,13 +1,27 @@
+import Desktop from './components/desktop/Desktop'
+import Window from './components/window/Window'
+import useWindowManager from './hooks/useWindowManager'
+
 function App() {
+  const { windows, openWindow, closeWindow, focusWindow } = useWindowManager()
+
   return (
-    <div className="window" style={{ width: 300, margin: 50 }}>
-      <div className="title-bar">
-        <div className="title-bar-text">My Portfolio</div>
-      </div>
-      <div className="window-body">
-        <p>Hello!</p>
-      </div>
-    </div>
+    <>
+      <Desktop onOpenWindow={openWindow} />
+      {windows.map(w => (
+        <Window
+          key={w.id}
+          title={w.title}
+          zIndex={w.zIndex}
+          x={w.x}
+          y={w.y}
+          onClose={() => closeWindow(w.id)}
+          onFocus={() => focusWindow(w.id)}
+        >
+          <w.component />
+        </Window>
+      ))}
+    </>
   )
 }
 
