@@ -25,14 +25,18 @@ function Taskbar() {
       padding: '0 4px',
       zIndex: 9999,
     }}>
-      <button className="start-button" style={{ display: 'flex', alignItems: 'center' }}>
-        <img src="/icons/windows-logo.png" width={16} height={16} style={{ marginRight: 4 }} />
-        Start
+      <button className="start-button" style={{ 
+        display: 'flex', 
+        alignItems: 'center',
+        }}>
+        <img src="/icons/windows-logo.png" width={20} height={20} style={{ marginRight: 4 }} />
+        <span style={{ position: 'relative', top: 5
+          }}>Start</span>
       </button>
       <div style={{
         border: '2px inset #c0c0c0',
-        padding: '2px 8px',
-        fontSize: 12,
+        padding: '1px 8px',
+        fontSize: 14,
       }}>
         {formatted}
       </div>
