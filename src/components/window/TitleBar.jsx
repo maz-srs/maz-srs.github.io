@@ -8,9 +8,15 @@ function TitleBar({ title, onClose, onMinimize, onMaximize }) {
         onMouseDown={e => e.stopPropagation()}
         onTouchStart={e => e.stopPropagation()}
       >
-        <button aria-label="Minimize" onClick={onMinimize} />
-        <button aria-label="Maximize" onClick={onMaximize} />
-        <button aria-label="Close" onClick={onClose} />
+        <button aria-label="Minimize" onClick={onMinimize}>
+          <img src="/icons/minimize.png" width={12} height={12} />
+        </button>
+        <button aria-label="Maximize" onClick={onMaximize}>
+          <img src="/icons/maximize.png" width={12} height={12} />
+        </button>
+        <button aria-label="Close" onClick={onClose}>
+          <img src="/icons/close.png" width={12} height={12} />
+        </button>
       </div>
     </div>
   )
