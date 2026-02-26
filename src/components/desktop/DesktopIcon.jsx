@@ -9,6 +9,7 @@ function DesktopIcon({ id, label, onOpen }) {
         margin: 20,
         cursor: 'pointer',
         color: 'white',
+        touchAction: 'manipulation',
       }}
       onDoubleClick={() => onOpen(id)}
     >

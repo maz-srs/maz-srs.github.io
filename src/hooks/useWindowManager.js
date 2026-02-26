@@ -9,6 +9,12 @@ const WINDOWS_CONFIG = [
   { id: 'contact', title: 'Contact', component: Contact },
 ]
 
+const CASCADE_START = { x: 120, y: 20 }
+const CASCADE_STEP = 24
+const WIN_W = 400
+const WIN_H = 300
+const TASKBAR_H = 40
+
 function useWindowManager() {
   const [windows, setWindows] = useState([])
   const [topZIndex, setTopZIndex] = useState(1)
@@ -19,13 +25,24 @@ function useWindowManager() {
       focusWindow(id)
       return
     }
+
+    const maxSteps = Math.min(
+      Math.floor((window.innerWidth - WIN_W - CASCADE_START.x) / CASCADE_STEP),
+      Math.floor((window.innerHeight - TASKBAR_H - WIN_H - CASCADE_START.y) / CASCADE_STEP),
+    )
+    const lastStep = windows.length > 0 ? windows[windows.length - 1].cascadeStep : -1
+    const step = (lastStep + 1) % (maxSteps + 1)
+    const x = CASCADE_START.x + step * CASCADE_STEP
+    const y = CASCADE_START.y + step * CASCADE_STEP
+
     const config = WINDOWS_CONFIG.find(w => w.id === id)
     setTopZIndex(prev => prev + 1)
     setWindows(prev => [...prev, {
       ...config,
       zIndex: topZIndex + 1,
-      x: 50 + Math.random() * 200,
-      y: 50 + Math.random() * 150,
+      x,
+      y,
+      cascadeStep: step,
     }])
   }
 
