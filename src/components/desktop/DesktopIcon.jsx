@@ -11,7 +11,7 @@ function DesktopIcon({ id, label, onOpen }) {
         color: 'white',
         touchAction: 'manipulation',
       }}
-      onDoubleClick={() => onOpen(id)}
+      onClick={() => onOpen(id)}
     >
       <img src={`/icons/${id}.png`} width={48} height={48} />
       <span style={{
