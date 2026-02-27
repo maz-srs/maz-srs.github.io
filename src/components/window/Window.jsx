@@ -3,26 +3,12 @@ import { Rnd } from 'react-rnd'
 import TitleBar from './TitleBar'
 
 const TASKBAR_HEIGHT = 40
-const TITLEBAR_HEIGHT = 28
 
-function Window({ title, onClose, onFocus, zIndex, children, x, y }) {
+function Window({ title, onClose, onFocus, onMinimize, zIndex, children, x, y, isMinimized }) {
   const [size, setSize] = useState({ width: 400, height: 300 })
   const [position, setPosition] = useState({ x, y })
-  const [mode, setMode] = useState('normal') // 'normal' | 'minimized' | 'maximized'
+  const [mode, setMode] = useState('normal')
   const [savedNormal, setSavedNormal] = useState(null)
-
-  function handleMinimize() {
-    if (mode === 'minimized') {
-      setSize(savedNormal.size)
-      setPosition(savedNormal.position)
-      setSavedNormal(null)
-      setMode('normal')
-    } else {
-      setSavedNormal({ size, position })
-      setSize(prev => ({ ...prev, height: TITLEBAR_HEIGHT }))
-      setMode('minimized')
-    }
-  }
 
   function handleMaximize() {
     if (mode === 'maximized') {
@@ -31,19 +17,21 @@ function Window({ title, onClose, onFocus, zIndex, children, x, y }) {
       setSavedNormal(null)
       setMode('normal')
     } else {
-      setSavedNormal({ size: mode === 'minimized' ? savedNormal.size : size, position: mode === 'minimized' ? savedNormal.position : position })
+      setSavedNormal({ size, position })
       setSize({ width: window.innerWidth, height: window.innerHeight - TASKBAR_HEIGHT })
       setPosition({ x: 0, y: 0 })
       setMode('maximized')
     }
   }
 
+  if (isMinimized) return null
+
   return (
     <Rnd
       size={size}
       position={position}
       minWidth={200}
-      minHeight={mode === 'minimized' ? TITLEBAR_HEIGHT : 150}
+      minHeight={150}
       style={{ zIndex }}
       onMouseDown={onFocus}
       dragHandleClassName="title-bar"
@@ -62,17 +50,15 @@ function Window({ title, onClose, onFocus, zIndex, children, x, y }) {
         <TitleBar
           title={title}
           onClose={onClose}
-          onMinimize={handleMinimize}
+          onMinimize={onMinimize}
           onMaximize={handleMaximize}
         />
-        {mode !== 'minimized' && (
-          <div
-            className="window-body"
-            style={{ flex: 1, overflow: 'auto' }}
-          >
-            {children}
-          </div>
-        )}
+        <div
+          className="window-body"
+          style={{ flex: 1, overflow: 'auto' }}
+        >
+          {children}
+        </div>
       </div>
     </Rnd>
   )

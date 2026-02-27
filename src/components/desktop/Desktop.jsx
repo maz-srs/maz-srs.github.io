@@ -7,23 +7,16 @@ const icons = [
   { id: 'contact', label: 'Contact' },
 ]
 
-function Desktop({ onOpenWindow }) {
+function Desktop({ onOpenWindow, windows, onMinimize }) {
   return (
     <>
-      <div style={{
-        width: '100vw',
-        height: 'calc(100vh - 40px)',
-        backgroundColor: '#008080',
-        position: 'relative',
-        overflow: 'hidden',
-      }}>
+      <div className="desktop">
         {icons.map(icon => (
           <DesktopIcon key={icon.id} id={icon.id} label={icon.label} onOpen={onOpenWindow} />
         ))}
       </div>
-      <Taskbar />
+      <Taskbar windows={windows} onMinimize={onMinimize} />
     </>
   )
 }
-
 export default Desktop

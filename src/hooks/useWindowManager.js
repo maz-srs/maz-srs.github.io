@@ -43,6 +43,7 @@ function useWindowManager() {
       x,
       y,
       cascadeStep: step,
+      isMinimized: false,
     }])
   }
 
@@ -57,7 +58,13 @@ function useWindowManager() {
     )
   }
 
-  return { windows, openWindow, closeWindow, focusWindow }
+  function minimizeWindow(id) {
+    setWindows(prev =>
+      prev.map(w => w.id === id ? { ...w, isMinimized: !w.isMinimized } : w)
+    )
+  }
+
+  return { windows, openWindow, closeWindow, focusWindow, minimizeWindow }
 }
 
 export default useWindowManager
