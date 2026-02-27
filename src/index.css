@@ -9,6 +9,9 @@
 @font-face {
   font-family: 'Minecraftia-Regular';
   src: url('./assets/fonts/Minecraftia-Regular.ttf') format('truetype');
+  ascent-override: 200%;
+  descent-override: 0%;
+  line-gap-override: 0%;
 }
 
 html, body {
@@ -73,6 +76,7 @@ html, body {
 .title-bar-text {
   color: white;
   font-weight: bold;
+  line-height: 1;
 }
 
 .title-bar-controls {
@@ -129,6 +133,11 @@ html, body {
   height: 16px;
 }
 
+.window-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
 .start-button {
   display: flex;
   align-items: center;
@@ -175,4 +184,18 @@ html, body {
 
 .desktop-icon:hover img {
   filter: brightness(1.2);
+}
+
+.window-body::-webkit-scrollbar-button:vertical:decrement {
+  background-image: url('/icons/arrow-up.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 10px;
+}
+
+.window-body::-webkit-scrollbar-button:vertical:increment {
+  background-image: url('/icons/arrow-down.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 10px;
 }

@@ -14,7 +14,7 @@ function Taskbar() {
     <div className="taskbar">
       <button className="start-button" style={{ display: 'flex', alignItems: 'center' }}>
         <img src="/icons/windows-logo.png" width={20} height={20} style={{ marginRight: 4 }} />
-        <span style={{ position: 'relative', top: 5 }}>Start</span>
+        <span>Start</span>
       </button>
       <div className="taskbar-clock">
         {formatted}

@@ -1,6 +1,6 @@
 function AboutMe() {
   return (
-    <div style={{ padding: 16 }}>
+    <div style={{ padding: 16 }} className="window-content">
       <h3>About Me</h3>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
       <h3>Skills</h3>

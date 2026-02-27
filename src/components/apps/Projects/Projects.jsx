@@ -8,7 +8,7 @@ const projects = [
 
 function Projects() {
   return (
-    <div style={{ padding: 16 }}>
+    <div style={{ padding: 16 }} className="window-content">
       {projects.map(project => (
         <div key={project.id} className="window" style={{ marginBottom: 16 }}>
           <div className="title-bar">

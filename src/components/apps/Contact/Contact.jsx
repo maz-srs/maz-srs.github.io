@@ -1,6 +1,6 @@
 function Contact() {
   return (
-    <div style={{ padding: 16 }}>
+    <div style={{ padding: 16 }} className="window-content">
       <h3>Get in touch</h3>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
       <br />
